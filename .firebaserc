@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "lumeoapp",
+    "skip": "lumeoapp"
+  },
+  "targets": {},
+  "etags": {}
+}
