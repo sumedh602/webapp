@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumeo - Messaging App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="415055046402-p8abf4qu0va3188sq6gh3rp5slu46l1e.googleusercontent.com">
+  <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://accounts.google.com;">
+</head>
+<body>
+  <!-- Login Page -->
+  <div id="loginPage">
+    <header>
+      <h1>Welcome to Lumeo</h1>
+      <p>Your all-in-one communication platform</p>
+    </header>
+    <main>
+      <div class="login-section">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Main App Page -->
+  <div id="appPage" style="display: none;">
+    <header>
+      <h1>Lumeo</h1>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </header>
+
+    <main class="app-container">
+      <section class="contacts">
+        <h2>Contacts</h2>
+        <button id="addContactBtn" class="add-contact-btn">+ Add Contact</button>
+        <ul id="contactsList"></ul>
+      </section>
+
+      <section class="chat">
+        <h2>Chat</h2>
+        <div class="chat-window" id="chatWindow"></div>
+        <textarea id="messageInput" placeholder="Type a message..."></textarea>
+        <button id="sendMessageBtn">Send</button>
+      </section>
+
+      <section class="media-sharing">
+        <button id="sendAudioBtn">Audio</button>
+        <button id="sendImageBtn">Image</button>
+        <button id="sendEmojiBtn">Emoji</button>
+      </section>
+
+      <section class="calls">
+        <button id="startVoiceCallBtn">Start Voice Call</button>
+        <button id="startVideoCallBtn">Start Video Call</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script type="module">
+    // Firebase and Google OAuth initialization
+    function start() {
+      gapi.auth2.init({
+        client_id: '415055046402-p8abf4qu0va3188sq6gh3rp5slu46l1e.apps.googleusercontent.com',
+        scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+        redirect_uri: 'http://127.0.0.1:8080/callback'  // Ensure this matches your Authorized Redirect URI
+      }).then(() => {
+        console.log("Google OAuth initialized successfully.");
+      }).catch(error => {
+        console.log('OAuth initialization error: ', error);
+      });
+    }
+
+    window.onload = start;
+  </script>
+</body>
+</html>
