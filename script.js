@@ -3,7 +3,7 @@ function start() {
   gapi.auth2.init({
     client_id: '415055046402-p8abf4qu0va3188sq6gh3rp5slu46l1e.apps.googleusercontent.com',  // Your OAuth client ID
     scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-    redirect_uri: 'https://www.lumeoapp.com/oauth2/callback'  // Ensure this matches the Redirect URI in Console
+    redirect_uri: 'https://www.lumeoapp.com/oauth2/callback'
   }).then(() => {
     console.log("Google OAuth initialized successfully.");
   }).catch(error => {
