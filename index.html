@@ -66,7 +66,7 @@
       gapi.auth2.init({
         client_id: '415055046402-p8abf4qu0va3188sq6gh3rp5slu46l1e.apps.googleusercontent.com',
         scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-        redirect_uri: 'http://127.0.0.1:8080/callback'  // Ensure this matches your Authorized Redirect URI
+        redirect_uri: 'http://127.0.0.1:8080/callback'
       }).then(() => {
         console.log("Google OAuth initialized successfully.");
       }).catch(error => {
