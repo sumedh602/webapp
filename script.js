@@ -1,40 +1,48 @@
-// Initialize the Google API client
+// Initialize the Google API client using the newer google.accounts.id method
 function start() {
-  gapi.auth2.init({
-    client_id: '415055046402-p8abf4qu0va3188sq6gh3rp5slu46l1e.apps.googleusercontent.com', // Use your Google OAuth Client ID here
-    scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-  }).then(() => {
-    // Handle success
-    console.log("Google API initialized.");
-  }).catch((error) => {
-    // Handle error
-    console.error("Google API initialization error:", error);
-  });
+  // Initialization is no longer necessary with google.accounts.id, we handle the button rendering and sign-in directly.
+  console.log("Google API initialized.");
 }
 
-// Google Sign-In Success handler
-function onSignIn(googleUser) {
-  const profile = googleUser.getBasicProfile();
-  console.log("User signed in:");
-  console.log("Name: " + profile.getName());
-  console.log("Email: " + profile.getEmail());
+// Google Sign-In Success handler using the new API method
+function handleCredentialResponse(response) {
+  // Decode the JWT ID token
+  console.log("Encoded JWT ID token: " + response.credential);
+
+  // Decode the JWT to get user data
+  const userData = jwt_decode(response.credential);
+  console.log("User data:", userData);
 
   // Hide login page and show app
   document.getElementById("loginPage").style.display = "none";
   document.getElementById("appPage").style.display = "block";
-  
-  // Optional: You can add further actions like loading user data or saving it to a database
-  // For example: Save user data to Firebase, show user contacts, etc.
+
+  // You can use userData to populate user-related information in your app
+  // For example: userData.name, userData.email, userData.picture
 }
 
-// Load the Google API platform script
-(function() {
-  var script = document.createElement('script');
-  script.src = 'https://apis.google.com/js/platform.js';
-  document.body.appendChild(script);
-})();
+// Google Sign-Out handler
+document.getElementById("logoutBtn").addEventListener("click", function () {
+  // Sign the user out by clearing credentials
+  document.getElementById("loginPage").style.display = "block";
+  document.getElementById("appPage").style.display = "none";
+});
 
-// Set up Firestore to connect to the emulator
+// Load Google OAuth client and sign-in button
+window.onload = function() {
+  // Initialize the Google Sign-In button
+  google.accounts.id.initialize({
+    client_id: "415055046402-p8abf4qu0va3188sq6gh3rp5slu46l1e.apps.googleusercontent.com", // Replace with your Client ID
+    callback: handleCredentialResponse, // Your callback function
+  });
+
+  google.accounts.id.renderButton(
+    document.getElementById("g_id_signin"),
+    { theme: "outline", size: "large" } // Optional: customize button appearance
+  );
+};
+
+// Optional: Add Firebase Firestore connection settings for local development
 if (window.location.hostname === "localhost") {
   firebase.firestore().settings({
     host: "localhost:8080",
