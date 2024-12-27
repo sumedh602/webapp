@@ -44,28 +44,23 @@ main {
   justify-content: center;
 }
 
-.login-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 #g-signin2 {
-  margin-top: 2rem;
-  width: auto;
+  margin-top: 1rem;
+  width: 250px;  /* Adjust the width */
   display: flex;
   justify-content: center;
+  padding: 0.8rem;
 }
 
 #g-signin2 span {
-  background-color: #ff6b6b;
+  background-color: #ff6b6b; /* Custom background color */
   padding: 0.8rem;
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #g-signin2:hover span {
-  background-color: #ff9a76;
+  background-color: #ff9a76; /* Hover effect */
 }
 
 .app-container {
