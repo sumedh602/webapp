@@ -6,7 +6,8 @@
   <title>Lumeo - Messaging App</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="415055046402-p8abf4qu0va3188sq6gh3rp5slu46l1e.googleusercontent.com">
+  <!-- Make sure this is your updated client_id -->
+  <meta name="google-signin-client_id" content="591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com">
   <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://accounts.google.com;">
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode"></script>
 </head>
@@ -61,12 +62,12 @@
   <script src="script.js"></script>
 
   <script type="module">
-    // Firebase and Google OAuth initialization
+    // Initialize the Google API client
     function start() {
       gapi.auth2.init({
-        client_id: '415055046402-p8abf4qu0va3188sq6gh3rp5slu46l1e.apps.googleusercontent.com',
+        client_id: '591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com',
         scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-        redirect_uri: 'http://127.0.0.1:8080/callback'
+        redirect_uri: 'https://www.lumeoapp.com/oauth2/callback' 
       }).then(() => {
         console.log("Google OAuth initialized successfully.");
       }).catch(error => {
