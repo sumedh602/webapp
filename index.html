@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="google-signin-client_id" content="591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com">
-  <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://accounts.google.com;">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    script-src 'self' https://apis.google.com; 
+    connect-src 'self' https://accounts.google.com https://www.googleapis.com; 
+    frame-src https://accounts.google.com; 
+    object-src 'none';
+  ">
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode"></script>
 </head>
 <body>
