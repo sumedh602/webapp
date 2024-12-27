@@ -1,4 +1,3 @@
-// Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCV5tsnlE0UkFIHiuhQUi1ZRouP_p0Ffi4",
   authDomain: "lumeoapp.firebaseapp.com",
@@ -9,13 +8,11 @@ const firebaseConfig = {
   measurementId: "G-DKSB2YH1BE"
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// Initialize the Google API client for Google Sign-In
 function start() {
   gapi.auth2.init({
-    client_id: '591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com', 
+    client_id: '591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com',
     scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
     redirect_uri: 'https://www.lumeoapp.com/oauth2/callback'
   }).then(() => {
@@ -25,22 +22,19 @@ function start() {
   });
 }
 
-// Google Sign-In Success handler
 function onSignIn(googleUser) {
   const profile = googleUser.getBasicProfile();
   console.log("User signed in:");
   console.log("Name: " + profile.getName());
   console.log("Email: " + profile.getEmail());
 
-  // Firebase authentication with Google
   const credential = firebase.auth.GoogleAuthProvider.credential(googleUser.getAuthResponse().id_token);
   
   firebase.auth().signInWithCredential(credential)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("Firebase user signed in:", user);
-      
-      // Hide login page and show app
+
       document.getElementById("loginPage").style.display = "none";
       document.getElementById("appPage").style.display = "block";
     }).catch((error) => {
@@ -48,7 +42,6 @@ function onSignIn(googleUser) {
     });
 }
 
-// Load the Google API platform script dynamically
 (function() {
   var script = document.createElement('script');
   script.src = 'https://apis.google.com/js/platform.js';
