@@ -21,7 +21,7 @@ function start() {
   }).then(() => {
     console.log("Google OAuth initialized successfully.");
   }).catch(error => {
-    console.error('OAuth initialization error: ', error);
+    console.log('OAuth initialization error: ', error);
   });
 }
 
@@ -34,44 +34,24 @@ function onSignIn(googleUser) {
 
   // Firebase authentication with Google
   const credential = firebase.auth.GoogleAuthProvider.credential(googleUser.getAuthResponse().id_token);
-
+  
   firebase.auth().signInWithCredential(credential)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("Firebase user signed in:", user);
-
+      
       // Hide login page and show app
       document.getElementById("loginPage").style.display = "none";
       document.getElementById("appPage").style.display = "block";
-
-      // Send a success message (optional, you can remove this if not needed)
-      window.postMessage('user-signed-in', 'https://www.lumeoapp.com');
     }).catch((error) => {
-      console.error('Firebase authentication error: ', error);
-      alert('Authentication failed. Please try again.');
+      console.log('Firebase authentication error: ', error);
     });
-}
-
-// Google Sign-Out handler
-function signOut() {
-  firebase.auth().signOut().then(() => {
-    gapi.auth2.getAuthInstance().signOut().then(() => {
-      console.log("User signed out.");
-      document.getElementById("loginPage").style.display = "block";
-      document.getElementById("appPage").style.display = "none";
-    }).catch(error => {
-      console.error("Error signing out from Google:", error);
-    });
-  }).catch(error => {
-    console.error("Error signing out from Firebase:", error);
-  });
 }
 
 // Load the Google API platform script dynamically
 (function() {
   var script = document.createElement('script');
   script.src = 'https://apis.google.com/js/platform.js';
-  script.onload = () => start(); // Start Google API client once the script is loaded
   document.body.appendChild(script);
 })();
 
