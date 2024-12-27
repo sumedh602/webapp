@@ -1,13 +1,3 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyCV5tsnlE0UkFIHiuhQUi1ZRouP_p0Ffi4",
-  authDomain: "lumeoapp.firebaseapp.com",
-  projectId: "lumeoapp",
-  storageBucket: "lumeoapp.firebasestorage.app",
-  messagingSenderId: "591544758369",
-  appId: "1:591544758369:web:a226173af1f62577113a20",
-  measurementId: "G-DKSB2YH1BE"
-};
-
 firebase.initializeApp(firebaseConfig);
 
 function start() {
@@ -34,7 +24,7 @@ function onSignIn(googleUser) {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("Firebase user signed in:", user);
-
+      
       document.getElementById("loginPage").style.display = "none";
       document.getElementById("appPage").style.display = "block";
     }).catch((error) => {
@@ -47,3 +37,14 @@ function onSignIn(googleUser) {
   script.src = 'https://apis.google.com/js/platform.js';
   document.body.appendChild(script);
 })();
+
+window.opener.postMessage('user-signed-in', 'https://www.lumeoapp.com');
+window.close();
+
+window.addEventListener('message', (event) => {
+  if (event.origin === 'https://www.lumeoapp.com') {
+    if (event.data === 'user-signed-in') {
+      console.log('User signed in successfully!');
+    }
+  }
+});
