@@ -6,13 +6,11 @@
   <title>Lumeo - Messaging App</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <!-- Make sure this is your updated client_id -->
   <meta name="google-signin-client_id" content="591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com">
   <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://accounts.google.com;">
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode"></script>
 </head>
 <body>
-  <!-- Login Page -->
   <div id="loginPage">
     <header>
       <h1>Welcome to Lumeo</h1>
@@ -25,7 +23,6 @@
     </main>
   </div>
 
-  <!-- Main App Page -->
   <div id="appPage" style="display: none;">
     <header>
       <h1>Lumeo</h1>
@@ -62,12 +59,11 @@
   <script src="script.js"></script>
 
   <script type="module">
-    // Initialize the Google API client
     function start() {
       gapi.auth2.init({
         client_id: '591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com',
         scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-        redirect_uri: 'https://www.lumeoapp.com/oauth2/callback' 
+        redirect_uri: 'https://www.lumeoapp.com/oauth2/callback'
       }).then(() => {
         console.log("Google OAuth initialized successfully.");
       }).catch(error => {
