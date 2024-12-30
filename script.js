@@ -17,7 +17,7 @@ function start() {
   gapi.auth2.init({
     client_id: '591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com',
     scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-    redirect_uri: 'https://www.lumeoapp.com/oauth2/callback'
+    redirect_uri: 'https://sumedh602.github.io/webapp/oauth2/callback'
   }).then(() => {
     console.log("Google OAuth initialized successfully.");
   }).catch(error => {
