@@ -9,7 +9,14 @@
   <meta name="google-signin-client_id" content="591544758369-9hsitg0viq1juoej6shge4co9uunj86g.apps.googleusercontent.com">
   
   <!-- Content-Security-Policy (CSP) -->
-  <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://accounts.google.com https://apis.google.com https://www.googleapis.com; script-src 'self' https://apis.google.com https://cdn.jsdelivr.net;">
+<meta http-equiv="Content-Security-Policy" content="
+default-src 'self'; 
+script-src 'self' https://accounts.google.com https://apis.google.com https://cdn.jsdelivr.net https://www.gstatic.com; 
+frame-src 'self' https://accounts.google.com https://apis.google.com https://www.googleapis.com; 
+connect-src 'self' https://accounts.google.com https://www.googleapis.com; 
+style-src 'self' 'unsafe-inline'; 
+img-src 'self' data: https://accounts.google.com https://www.gstatic.com; 
+font-src 'self';">
   
   <!-- JWT Decode -->
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode"></script>
