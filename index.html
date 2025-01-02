@@ -14,12 +14,14 @@
   <!-- Content-Security-Policy (CSP) -->
   <meta http-equiv="Content-Security-Policy" content="
   default-src 'self'; 
-  script-src 'self' https://apis.google.com https://www.gstatic.com https://accounts.google.com; 
-  connect-src 'self' https://www.googleapis.com https://accounts.google.com;
+  script-src 'self' https://apis.google.com https://www.gstatic.com https://accounts.google.com https://www.googleapis.com https://cdn.jsdelivr.net; 
   style-src 'self' 'unsafe-inline' https://accounts.google.com https://fonts.googleapis.com; 
+  connect-src 'self' https://www.googleapis.com https://accounts.google.com; 
   img-src 'self' data: https://accounts.google.com https://www.gstatic.com; 
-  font-src 'self' https://fonts.gstatic.com;">
-
+  font-src 'self' https://fonts.gstatic.com; 
+  frame-src 'self' https://accounts.google.com;
+">
+  
   <!-- JWT Decode Library -->
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode"></script>
 </head>
