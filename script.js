@@ -12,13 +12,32 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// Dynamically load JWT Decode library if needed
+(function () {
+  const script = document.createElement("script");
+  script.src = "https://cdn.jsdelivr.net/npm/jwt-decode";
+  script.onload = () => {
+    console.log('JWT Decode library loaded successfully.');
+  };
+  document.body.appendChild(script);
+})();
+
 // Handle GIS sign-in response
 function handleCredentialResponse(response) {
   console.log("Encoded JWT ID token:", response.credential);
 
-  // Decode JWT token
-  const userData = jwt_decode(response.credential);
-  console.log("Decoded User Data:", userData);
+  // Wait for the jwt-decode library to be available
+  if (typeof jwt_decode !== "undefined") {
+    try {
+      // Decode JWT token
+      const userData = jwt_decode(response.credential);
+      console.log("Decoded User Data:", userData);
+    } catch (error) {
+      console.error("Error decoding JWT:", error);
+    }
+  } else {
+    console.error("jwt_decode is not available.");
+  }
 
   // Firebase authentication with Google
   const credential = firebase.auth.GoogleAuthProvider.credential(response.credential);
@@ -58,10 +77,3 @@ window.addEventListener("message", (event) => {
     }
   }
 });
-
-// Dynamically load JWT Decode library if needed
-(function () {
-  const script = document.createElement("script");
-  script.src = "https://cdn.jsdelivr.net/npm/jwt-decode";
-  document.body.appendChild(script);
-})();
