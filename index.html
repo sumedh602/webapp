@@ -21,9 +21,10 @@
   font-src 'self' https://fonts.gstatic.com; 
   frame-src 'self' https://accounts.google.com;
 ">
-  <!-- Cross-Origin-Opener-Policy (COOP) -->
+
+ <!-- Cross-Origin-Opener-Policy (COOP) -->
   <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
-  
+
   <!-- JWT Decode Library -->
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode"></script>
 
@@ -85,6 +86,24 @@
       </section>
     </main>
   </div>
+
+  <!-- Firebase Initialization -->
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCV5tsnlE0UkFIHiuhQUi1ZRouP_p0Ffi4",
+      authDomain: "lumeoapp.firebaseapp.com",
+      projectId: "lumeoapp",
+      storageBucket: "lumeoapp.firebasestorage.app",
+      messagingSenderId: "591544758369",
+      appId: "1:591544758369:web:a226173af1f62577113a20",
+      measurementId: "G-DKSB2YH1BE"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+  </script>
 
   <!-- Custom JavaScript -->
   <script src="script.js"></script>
